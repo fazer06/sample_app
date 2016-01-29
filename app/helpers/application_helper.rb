@@ -6,7 +6,7 @@ module ApplicationHelper
 	# The page_title variable has a default value of an empty string
 	def full_title(page_title = '') 
 		# Define the base_title variable
-		base_title = "Ruby on Rails Tutorial Sample App"
+		base_title = "Site Name Here"
 		# Boolean test
 		if page_title.empty?
 			# Return the base title (return is optional, we can just use base_title)
