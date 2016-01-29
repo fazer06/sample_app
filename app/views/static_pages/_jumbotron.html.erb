@@ -3,5 +3,8 @@
 
   <h2><%= get_season() %></h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to signup_path, class: "btn btn-lg btn-primary" do %>
+	Sign up now! <i class="fa fa-user"></i>
+  <% end %>
+
 </div>
