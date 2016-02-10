@@ -43,6 +43,20 @@ module ApplicationHelper
 		my_date = Time.now
   	end
 
+  	# Displays a morning, afternoon, or evening message
+  	def get_time_message()
+		t = Time.now
+		#string_date = t.strftime("%A %B %d, %Y")
+
+		if t.hour < 12
+			time_message =	"Good Morning, Shaun!"
+		elsif t.hour > 12 && t.hour < 17 
+			time_message =	"Good Afternoon, Shaun!"
+		else
+			time_message =	"Good Evening, Shaun!"
+		end
+  	end
+
 	# Copyright Notice, with year range
 	def copyright_notice_year_range(start_year)
 		# In case the input was not a number (nil.to_i will return a 0)
@@ -69,13 +83,13 @@ module ApplicationHelper
 		time = Time.new
 
 		if(time.month >= 3) && (time.month <= 5)
-					"Yeah it is Spring"
+				season_type = "Yeah it is Spring"
 			elsif (time.month > 5) && (time.month <= 8)
-					"Everyone Loves Summer"
+				season_type = "Everyone Loves Summer"
 			elsif (time.month > 8) && (time.month <= 10)
-					"Put on Your Coat because Autumn is here"
+				season_type = "Put on Your Coat because Autumn is here"
 			else
-					"Yuck, it's now Winter"
+				season_type = "Yuck, it's now Winter"
 		end
 	end
 
