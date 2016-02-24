@@ -36,6 +36,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       end
         # check the user’s profile page loads from the show action
         assert_template 'users/show'
+        # Make sure we have a flash on the page
+        assert_not_empty flash
     end
 
 end
