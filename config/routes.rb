@@ -1,7 +1,6 @@
 # == Route Map
 #
 #    Prefix Verb   URI Pattern               Controller#Action
-# users_new GET    /users/new(.:format)      users#new
 #      root GET    /                         static_pages#home
 #      help GET    /help(.:format)           static_pages#help
 #     about GET    /about(.:format)          static_pages#about
@@ -17,8 +16,6 @@
 #
 
 Rails.application.routes.draw do
-
-  get 'users/new'
 
 	# Define which page is the root of the application
 	root 'static_pages#home'
