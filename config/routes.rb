@@ -20,14 +20,20 @@ Rails.application.routes.draw do
 	# Define which page is the root of the application
 	root 'static_pages#home'
 	
+	# Named Routes
+
 	# By using get we arrange for the route to respond to a GET request
 	# get a page at some address http://localhost:3000/help
+
 	# VERB	/url  	  =>  	'controller#action'
 	get     'help'    =>	'static_pages#help'
 	get     'about'   =>	'static_pages#about'
 	get     'signup'  =>	'users#new'
+	get 	'login'   => 	'sessions#new'
+	post 	'login'   => 	'sessions#create'
+	delete 	'logout'  => 	'sessions#destroy'
 
-	# The users resource lets us respond to the RESTful URLs
+	# The users resource lets us respond to the full suite of RESTful URLs
 
 	# Prefix    Verb    URI Pattern       Controller#Action
 	# users     GET     /users            users#index

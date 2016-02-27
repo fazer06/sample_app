@@ -49,11 +49,11 @@ module ApplicationHelper
 		#string_date = t.strftime("%A %B %d, %Y")
 
 		if t.hour < 12
-			time_message =	"Good Morning, Shaun!"
+			time_message =	"Good Morning"
 		elsif t.hour > 12 && t.hour < 17 
-			time_message =	"Good Afternoon, Shaun!"
+			time_message =	"Good Afternoon"
 		else
-			time_message =	"Good Evening, Shaun!"
+			time_message =	"Good Evening"
 		end
   	end
 

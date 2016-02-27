@@ -28,13 +28,24 @@ class User < ActiveRecord::Base
  	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
  	# Validates that :email is present and not over 255 characters long, 
 	validates :email, presence: true, length: { maximum: 255 },
-		# uses regex pattern matching, and is unique.
-		format: { with: VALID_EMAIL_REGEX },
-		# Test for case_sensitive and uniqueness. 
-		# Rails infers that uniqueness should be true as well 
-		uniqueness: { case_sensitive: false }
-		has_secure_password
-		# The password should be present and have a minimum length, and allow nil
-		# for updating the profile
-		validates :password, presence: true, length: { minimum: 6 }
+	# uses regex pattern matching, and is unique.
+	format: { with: VALID_EMAIL_REGEX },
+	# Test for case_sensitive and uniqueness. 
+	# Rails infers that uniqueness should be true as well 
+	uniqueness: { case_sensitive: false }
+	has_secure_password
+	# The password should be present and have a minimum length, and allow nil
+	# for updating the profile
+	validates :password, presence: true, length: { minimum: 6 }
+
+	# Returns the hash digest of the given string.
+ 	# User.digest(string) is the clearest way to define it
+ 	# but it can be written as self.digest(string)
+ 	# it's used for minimum cost in the tests,
+ 	# and it is called from test/fixtures/users.yml
+	def User.digest(string)
+		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+													  BCrypt::Engine.cost
+		BCrypt::Password.create(string, cost: cost)
+	end
 end

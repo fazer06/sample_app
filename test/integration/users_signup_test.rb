@@ -36,6 +36,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       end
         # check the user’s profile page loads from the show action
         assert_template 'users/show'
+        # Is the user logged in ?
+        # Call is_logged_in? in test/test_helper.rb
+        assert is_logged_in?
         # Make sure we have a flash on the page
         assert_not_empty flash
     end
