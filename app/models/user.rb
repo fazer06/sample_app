@@ -8,6 +8,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string
+#  remember_digest :string
 #
 # Indexes
 #
@@ -16,6 +17,8 @@
 #
 
 class User < ActiveRecord::Base
+
+	attr_accessor :remember_token
 	# downcase the email and username attributes before saving the user
 	before_save { self.email = email.downcase }
 	before_save { self.username = username.downcase }
@@ -48,4 +51,40 @@ class User < ActiveRecord::Base
 													  BCrypt::Engine.cost
 		BCrypt::Password.create(string, cost: cost)
 	end
+
+	############### Create the remember token and remember digest ##############
+
+	# With these two methods we've created a valid token and associated digest 
+	# by first making a new remember token using User.new_token, 
+	# and then updating the remember digest with the result of applying User.digest.
+
+	# We need to create a random string of digits for use as a remember token.
+	# This returns a random token for use in the remember method below
+	# User.new_token is the clearest way to define it
+ 	# but it can be written as self.new_token 
+  	def User.new_token
+		SecureRandom.urlsafe_base64
+	end
+
+	# Remembers a user in the database for use in persistent sessions.
+	def remember
+		self.remember_token = User.new_token
+		update_attribute(:remember_digest, User.digest(remember_token))
+	end
+
+	############################################################################
+
+	# Returns true if the given token matches the digest.
+	def authenticated?(remember_token)
+		return false if remember_digest.nil?
+		BCrypt::Password.new(remember_digest).is_password?(remember_token)
+	end
+
+	# Forgets a user.
+	def forget
+		update_attribute(:remember_digest, nil)
+	end
+
+
+
 end

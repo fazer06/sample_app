@@ -5,6 +5,9 @@
 #      help GET    /help(.:format)           static_pages#help
 #     about GET    /about(.:format)          static_pages#about
 #    signup GET    /signup(.:format)         users#new
+#     login GET    /login(.:format)          sessions#new
+#           POST   /login(.:format)          sessions#create
+#    logout DELETE /logout(.:format)         sessions#destroy
 #     users GET    /users(.:format)          users#index
 #           POST   /users(.:format)          users#create
 #  new_user GET    /users/new(.:format)      users#new

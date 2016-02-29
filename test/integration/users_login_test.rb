@@ -50,10 +50,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert_not is_logged_in?
 		# redirected to the root URL
 		assert_redirected_to root_url
-
 		# Simulate a user clicking logout in a second window.
-		#delete logout_path
-
+		delete logout_path
 		# Follow the redirect to root url
 		follow_redirect!
 		# Check that the login link reappears
@@ -62,6 +60,18 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert_select "a[href=?]", logout_path,      count: 0
 		# Check that the profile link disappears
 		assert_select "a[href=?]", user_path(@user), count: 0
+	end
+
+	# Login test with the checkbox checked
+	test "login with remembering" do
+		log_in_as(@user, remember_me: '1')
+		assert_not_nil cookies['remember_token']
+	end
+
+	# Login test without the checkbox checked
+	test "login without remembering" do
+		log_in_as(@user, remember_me: '0')
+		assert_nil cookies['remember_token']
 	end
 
 end
