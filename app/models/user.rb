@@ -9,6 +9,7 @@
 #  updated_at      :datetime         not null
 #  password_digest :string
 #  remember_digest :string
+#  admin           :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -38,8 +39,8 @@ class User < ActiveRecord::Base
 	uniqueness: { case_sensitive: false }
 	has_secure_password
 	# The password should be present and have a minimum length, and allow nil
-	# for updating the profile
-	validates :password, presence: true, length: { minimum: 6 }
+	# for updating the profile.
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
 	# Returns the hash digest of the given string.
  	# User.digest(string) is the clearest way to define it

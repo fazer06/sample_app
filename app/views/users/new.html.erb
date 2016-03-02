@@ -12,11 +12,11 @@
 
 		When called with a method corresponding to a form element, 
 		like a text field, f returns code for that element which is designed to 
-		set an attribute of the @user object.
+		set an attribute of an Active Record object, in this case @user
 
 		Or to put it another way, it creates the HTML needed to make a labeled 
 		text field element appropriate for setting the username attribute 
-		of a User model, like this ...
+		of a User model, this is what it creates ...
 
 		<label for="user_username">Username</label>
 		<input class="form-control" type="text" name="user[username]" id="user_username" />
