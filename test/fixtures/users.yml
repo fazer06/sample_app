@@ -2,7 +2,7 @@
 
 fazer:
   username: fazer
-  email: shaun.ttre@gmail.com
+  email: test@gmail.com
   password_digest: <%= User.digest('password') %>
   admin: true
   activated: true
