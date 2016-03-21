@@ -1,0 +1,17 @@
+<li id="micropost-<%= micropost.id %>" class="media">
+	<div class="media-left">
+		<a href="#">
+			<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+		</a>
+	</div>
+	<div class="media-body">
+		<h4 class="media-heading"><%= link_to micropost.user.username, micropost.user %></h4>
+		<%= micropost.content %><br>
+		<%= image_tag(micropost.picture.url, class: "img-responsive") if micropost.picture? %>
+		Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+		<% if current_user?(micropost.user) %>
+			<%= link_to "delete", micropost, method: :delete,
+		                                 	 data: { confirm: "You sure?" } %>
+		<% end %>
+	</div>
+</li>

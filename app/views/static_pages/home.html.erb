@@ -1,4 +1,29 @@
 <!--  call the provide function and associate the string "Home" with the label :title -->
 <% provide(:title, "Home") %>
+
+<% if logged_in? %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<section class="user_info">
+				<%= render 'shared/user_info' %>
+			</section>
+			<section class="stats">
+				
+			</section>
+			<section class="micropost_form">
+				<%= render 'shared/micropost_form' %>
+			</section>
+		</div>
+		<div class="col-md-8">
+			<h3>Micropost Feed</h3>
+			<%= render 'shared/feed' %>
+		</div>
+	</div>
+</div>
+<% else %>
+
 <%= render 'jumbotron' %>
 <i class="fa fa-thumbs-o-up fa-5x"></i>
+
+<% end %>

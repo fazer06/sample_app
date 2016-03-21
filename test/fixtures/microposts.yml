@@ -1,0 +1,50 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+spin:
+  content: "I just watched spin on Channel 4"
+  created_at: <%= 10.minutes.ago %>
+  user: fazer
+
+bestival:
+  content: "September 2014. Robin Hill Country Park"
+  created_at: <%= 2.years.ago %>
+  user: fazer
+
+cat_video:
+  content: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
+  created_at: <%= 2.hours.ago %>
+  user: fazer
+
+most_recent:
+  content: "Writing a short test"
+  created_at: <%= Time.zone.now %>
+  user: fazer
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: fazer
+<% end %>
+
+# Microposts that were made by a different user
+
+designs:
+  content: "New series with eight people designing and building a dream houses"
+  created_at: <%= 5.days.ago %>
+  user: ruth
+
+liveanotherday:
+  content: "Chloe, is now working underground with an infamous hacker"
+  created_at: <%= 3.days.ago %>
+  user: renee
+
+bridge:
+  content: "Danish TV series The Bridge, was shown in the UK on BBC4"
+  created_at: <%= 10.minutes.ago %>
+  user: ruth
+
+van:
+  content: "Dude, this van's, like, rolling probable cause."
+  created_at: <%= 4.hours.ago %>
+  user: kim

@@ -24,6 +24,9 @@
 
 class User < ActiveRecord::Base
 
+	# This side of the association lets us use user.microposts
+	# which Returns a collection of the user’s microposts
+	has_many :microposts, dependent: :destroy
 	attr_accessor :remember_token, :activation_token, :reset_token
 	# downcase the email and username attributes before saving the user
 	#before_save { self.email = email.downcase }
@@ -122,6 +125,11 @@ class User < ActiveRecord::Base
 	# Returns true if a password reset has expired.
 	def password_reset_expired?
 		reset_sent_at < 2.hours.ago
+	end
+
+	# Status feed
+	def feed
+		Micropost.where("user_id = ?", id)
 	end
 
 	private
